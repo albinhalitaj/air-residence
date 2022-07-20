@@ -1,0 +1,14 @@
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/bin/Debug/net6.0/AirPlaces.Entities.deps.json
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/bin/Debug/net6.0/AirPlaces.Entities.dll
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/bin/Debug/net6.0/AirPlaces.Entities.pdb
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/obj/Debug/net6.0/AirPlaces.Entities.csproj.AssemblyReference.cache
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/obj/Debug/net6.0/AirPlaces.Entities.GeneratedMSBuildEditorConfig.editorconfig
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/obj/Debug/net6.0/AirPlaces.Entities.AssemblyInfoInputs.cache
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/obj/Debug/net6.0/AirPlaces.Entities.AssemblyInfo.cs
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/obj/Debug/net6.0/AirPlaces.Entities.csproj.CoreCompileInputs.cache
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/obj/Debug/net6.0/AirPlaces.Entities.dll
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/obj/Debug/net6.0/refint/AirPlaces.Entities.dll
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/obj/Debug/net6.0/AirPlaces.Entities.pdb
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/obj/Debug/net6.0/ref/AirPlaces.Entities.dll
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/bin/Debug/net6.0/AirPlaces.Entities.runtimeconfig.json
+/home/albik/RiderProjects/AirPlaces/AirPlaces.Entities/obj/Debug/net6.0/AirPlaces.Entities.genruntimeconfig.cache

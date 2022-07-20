@@ -1,0 +1,141 @@
+<div *ngIf="residence$ | async as residence">
+    <div class="page-header has-tab m-t-20">
+      <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+        <div class="media align-items-center m-b-15">
+          <nz-avatar nzShape="square" [nzSize]="70" [nzSrc]="residence.images[0].url"></nz-avatar>
+          <div class="m-l-15">
+            <h4 class="m-b-0">{{residence.title}}</h4>
+            <p class="text-muted m-b-0">Kodi: #{{residence.id}}</p>
+          </div>
+        </div>
+        <div class="m-b-15">
+          <button nz-button nzType="primary" *ngIf="!isEditMode" (click)="isEditMode = !isEditMode">
+            <i nz-icon nzType="edit" theme="outline"></i>
+            <span>Edito</span>
+          </button>
+          <button [disabled]="!residenceForm.valid || fileList.length === 0" nz-button nzType="default" *ngIf="isEditMode" (click)="save()">
+            <i nz-icon nzType="save" theme="outline"></i>
+            <span>Ruaj</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <nz-tabset *ngIf="!isEditMode" class="page-header-tab">
+      <nz-tab nzTitle="Të përgjithshme">
+        <div class="row">
+          <div class="col-md-3">
+            <nz-card>
+              <div class="media align-items-center">
+                <i class="font-size-40 text-success" nz-icon nzType="smile" theme="outline"></i>
+                <div class="m-l-15">
+                  <p class="m-b-0 text-muted">10 vlerësime</p>
+                  <nz-rate [ngModel]="4.5" nzDisabled></nz-rate>
+                </div>
+              </div>
+            </nz-card>
+          </div>
+          <div class="col-md-3">
+            <nz-card>
+              <div class="media align-items-center">
+                <i class="font-size-40 text-primary" nz-icon nzType="shopping-cart" theme="outline"></i>
+                <div class="m-l-15">
+                  <p class="m-b-0 text-muted">Kontakte</p>
+                  <h3 class="m-b-0 ls-1">1,521</h3>
+                </div>
+              </div>
+            </nz-card>
+          </div>
+          <div class="col-md-3">
+            <nz-card>
+              <div class="media align-items-center">
+                <i class="font-size-40 text-primary" nz-icon nzType="message" theme="outline"></i>
+                <div class="m-l-15">
+                  <p class="m-b-0 text-muted">Komente</p>
+                  <h3 class="m-b-0 ls-1">27</h3>
+                </div>
+              </div>
+            </nz-card>
+          </div>
+          <div class="col-md-3">
+            <nz-card>
+              <div class="media align-items-center">
+                <i class="font-size-40 text-primary" nz-icon nzType="stock" theme="outline"></i>
+                <div class="m-l-15">
+                  <p class="m-b-0 text-muted">Available Stock</p>
+                  <h3 class="m-b-0 ls-1">152</h3>
+                </div>
+              </div>
+            </nz-card>
+          </div>
+        </div>
+        <nz-card>
+          <h5>Infot Bazike</h5>
+          <table class="product-info-table m-t-20">
+            <tbody>
+            <tr>
+              <td>Çmimi:</td>
+              <td class="text-dark font-weight-semibold">${{residence.price}}</td>
+            </tr>
+            <tr>
+              <td>Kategoria:</td>
+              <td>{{residence.category}}</td>
+            </tr>
+            <tr>
+              <td>Statusi:</td>
+              <td>
+                <nz-tag [nzColor]="'cyan'">E Lirë</nz-tag>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </nz-card>
+        <nz-card>
+          <h5>Adresa</h5>
+          <table class="product-info-table m-t-20">
+            <tbody>
+            <tr>
+              <td>Adresa:</td>
+              <td>{{residence.address}}</td>
+            </tr>
+            <tr>
+              <td>Qyteti:</td>
+              <td>{{residence.city}}</td>
+            </tr>
+            <tr>
+              <td>Shteti:</td>
+              <td>{{residence.country}}</td>
+            </tr>
+            <tr>
+              <td>Kodi Postal:</td>
+              <td>{{residence.zipCode}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </nz-card>
+        <nz-card nzTitle="Përshkrimi i vendbanimit">
+          <div [innerHTML]="residence.description"></div>
+        </nz-card>
+      </nz-tab>
+      <nz-tab nzTitle="Imazhet">
+        <nz-card>
+          <button (click)="download()" style="margin-bottom: 20px" nz-button nzType="primary" nzSize="large">
+            <i nz-icon nzType="download"></i>
+            Shkarko Imazhet
+          </button>
+          <div class="row">
+            <nz-image-group *ngFor="let item of residence.images" class="col-md-3">
+              <img nz-image class="img-fluid" [nzSrc]="item.url == null ? 'assets/images/others/local-image.jpg' : item.url" [alt]="residence.title">
+            </nz-image-group>
+          </div>
+        </nz-card>
+      </nz-tab>
+    </nz-tabset>
+  <ng-container *ngIf="isEditMode">
+    <app-residence-form [form]="residenceForm"
+                        (onFileRemove)="onFileRemove($event)"
+                        (onFileSubmit)="onFileSubmit($event)"
+                        [imageList]="fileList"
+                        [isEdit]="true"
+                        [residenceId]="residenceId"></app-residence-form>
+  </ng-container>
+</div>

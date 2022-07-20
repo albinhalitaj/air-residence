@@ -1,0 +1,92 @@
+<nz-card>
+  <div class="row m-b-30">
+    <div class="col-lg-8">
+      <div class="d-md-flex">
+        <div class="m-b-10 m-r-20">
+          <nz-input-group [nzPrefix]="prefixTemplate">
+            <input type="text" [formControl]="searchInput" nz-input placeholder="Kërko këtu...">
+          </nz-input-group>
+          <ng-template #prefixTemplate>
+            <i nz-icon nzType="search" class="opacity-05"></i>
+          </ng-template>
+        </div>
+        <div class="m-b-10 m-r-20 d-flex align-items-center">
+          <nz-select [(ngModel)]="selectedCategory" (ngModelChange)="select($event)" style="min-width: 220px;" class="w-100" nzPlaceHolder="Kategoria">
+            <nz-option nzLabel="Të gjitha" nzValue="Të gjitha"></nz-option>
+            <nz-option nzLabel="Shtëpi" nzValue="Shtëpi"></nz-option>
+            <nz-option nzLabel="Banesë" nzValue="Banesë"></nz-option>
+            <nz-option nzLabel="Shtëpi për musafirë" nzValue="Shtëpi për musafirë"></nz-option>
+            <nz-option nzLabel="Hotel" nzValue="Hotel"></nz-option>
+          </nz-select>
+        </div>
+        <div class="m-b-10 m-r-20 d-flex align-items-center">
+          <nz-select style="min-width: 220px;" class="w-100" [(ngModel)]="selectedStatus" nzPlaceHolder="Statusi">
+            <nz-option nzLabel="Të gjitha" nzValue="Të gjitha"></nz-option>
+            <nz-option nzLabel="E lirë" nzValue="E lirë"></nz-option>
+            <nz-option nzLabel="E padisponueshme" nzValue="E padisponueshme"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 text-right">
+      <a nz-button routerLink="new" nzType="primary">
+        <i nz-icon nzType="plus-circle" theme="outline"></i>
+        <span>Shto vendbanim të ri</span>
+      </a>
+    </div>
+  </div>
+    <nz-table [nzLoading]="isLoading | async"  #residencesTable [nzData]="filteredResidences$ | async">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Titulli</th>
+        <th>Kategoria</th>
+        <th>Çmimi</th>
+        <th>Adresa</th>
+        <th>Qyteti</th>
+        <th>Shteti</th>
+        <th>Telefoni</th>
+        <th>Statusi</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of residencesTable.data; let i=index; trackBy: identify">
+        <td>#{{i+1}}</td>
+        <td>
+          <a [routerLink]="[item.id,'details']" class="d-flex align-items-center">
+            <nz-avatar nzShape="square" [nzSize]="60" nzIcon="picture" [nzSrc]="item.images[0]?.url"></nz-avatar>
+            <span class="m-l-10">{{item.title}}</span>
+          </a>
+        </td>
+        <td>{{item.category}}</td>
+        <td>${{item.price | number: '2.2-2'}}</td>
+        <td>
+          {{item.address}}
+        </td>
+        <td>
+          {{item.city}}
+        </td>
+        <td>
+          {{item.country}}
+        </td>
+        <td>
+          {{item.phone}}
+        </td>
+        <td>
+          <nz-tag [nzColor]="'green'">
+            <i nz-icon nzType="check-circle"></i>
+            E Lirë
+          </nz-tag>
+        </td>
+        <td class="text-md-right">
+          <button (click)="showConfirm(item)" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Fshij">
+            <i nz-icon nzType="delete" theme="outline"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+</nz-card>
+
+
